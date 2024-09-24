@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,6 +29,16 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
   String temperature = '---';
   String weatherCondition = '---';
 
+  // Simulate fetching weather data
+  void _fetchWeatherData() {
+    final random = Random();
+    setState(() {
+      cityName = _cityController.text;
+      temperature = '${15 + random.nextInt(16)}°C'; // Random temperature between 15°C and 30°C
+      weatherCondition = ['Sunny', 'Cloudy', 'Rainy'][random.nextInt(3)]; // Random weather condition
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,11 +59,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  cityName = _cityController.text;
-                });
-              },
+              onPressed: _fetchWeatherData,
               child: Text('Fetch Weather'),
             ),
             SizedBox(height: 32),
