@@ -11,7 +11,7 @@ class WeatherInfoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Weather Info App',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
       home: WeatherHomePage(),
     );
@@ -45,37 +45,63 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
       appBar: AppBar(
         title: Text('Weather Info'),
       ),
-      body: Padding(
+      body: Container(
+        color: Colors.green, // Set background color to green
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Text(
+              'Check Weather',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 16),
             TextField(
               controller: _cityController,
               decoration: InputDecoration(
                 labelText: 'Enter City Name',
                 border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white70, // Background color for text field
               ),
             ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: _fetchWeatherData,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent, // Updated to backgroundColor
+                foregroundColor: Colors.white, // Text color
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
               child: Text('Fetch Weather'),
             ),
             SizedBox(height: 32),
             Text(
               'City: $cityName',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.white,
+              ),
             ),
             SizedBox(height: 8),
             Text(
               'Temperature: $temperature',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.white,
+              ),
             ),
             SizedBox(height: 8),
             Text(
               'Condition: $weatherCondition',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
